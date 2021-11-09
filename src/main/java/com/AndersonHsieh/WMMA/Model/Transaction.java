@@ -11,17 +11,31 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "Amount", nullable = false)
-    private Double Amount;
+    @Column(name = "amount", nullable = false)
+    private Double amount;
 
-    @Column(name = "Time", nullable = false)
+    @Column(name = "time", nullable = false)
     private LocalDateTime time;
 
-    @Column(name = "Note")
-    private String Note;
+    public Transaction(String name, Double amount, LocalDateTime time) {
+        this.name = name;
+        this. amount = amount;
+        this.time = time;
+    }
+
+    public Transaction(Long id, String name, Double amount, LocalDateTime time) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+        this.time = time;
+    }
+
+    public Transaction() {
+    }
+
 
     public Long getId() {
         return id;
@@ -40,11 +54,11 @@ public class Transaction {
     }
 
     public Double getAmount() {
-        return Amount;
+        return amount;
     }
 
     public void setAmount(Double amount) {
-        Amount = amount;
+        this.amount = amount;
     }
 
     public LocalDateTime getTime() {
@@ -55,24 +69,13 @@ public class Transaction {
         this.time = time;
     }
 
-    public String getNote() {
-        return Note;
-    }
-
-    public void setNote(String note) {
-        Note = note;
-    }
-
     @Override
     public String toString() {
         return "Transaction{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Amount=" + Amount +
+                ", Amount=" + amount +
                 ", time=" + time +
-                ", Note='" + Note + '\'' +
                 '}';
     }
-
-
 }
