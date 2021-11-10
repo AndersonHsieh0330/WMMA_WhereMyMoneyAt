@@ -1,4 +1,4 @@
-# WMMA_WhereMyMoneyAt
+# WMMA_WhereMyMoneyAt_RestAPI
 This is the RestAPI implementation of WMMA, built with Spring boot and MySQL. 
 
 WMMA, which stands for WhereMyMoneyAt is an app that helps you keep track of your expenses and money transactions.
