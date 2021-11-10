@@ -30,7 +30,7 @@ Parameters:
 - amount : Not required, can be a decimal number and negative number. Ex. 3.99
 - time : Not required, must be in the form of YYYY-MM-DD-HH-MM-SS with a '-' character in between numbers(24 hr). Ex. 2021-11-09-14-15-06-55
   
-DELETE : http://localhost:8080/api/v1/transaction/<id>
+DELETE : http://localhost:8080/api/v1/transaction/<id> [
 
 Path Variable:
 - id : Required, the id of the transaction that is to be edited.
