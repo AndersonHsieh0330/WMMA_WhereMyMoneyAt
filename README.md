@@ -1,2 +1,3 @@
 # WMMA_WhereMyMoneyAt
-An App that allows me to keep track of my expenses
+This is the RestAPI implementation of WMMA, built with Spring boot and MySQL
+WMMA_WHereMyMoneyAt Allows you to keep track of your expenses
