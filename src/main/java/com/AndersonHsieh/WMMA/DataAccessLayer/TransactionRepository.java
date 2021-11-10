@@ -13,6 +13,6 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
     List<Transaction> findTransactionByDateInterval(String from, String to);
 
     @Query(value = "SELECT * FROM transaction WHERE id = ?1 ;", nativeQuery = true)
-    Optional<Transaction> findTransactionByEmail(Long id);
+    Optional<Transaction> findTransactionById(Long id);
 
 }
