@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,10 @@ public class TransactionService {
                 checkDateTimeFormatCorrectly(fromSplit);
                 checkDateTimeFormatCorrectly(toSplit);
                 //reach here if no exception is thrown
-                return transactionRepository.findTransactionByDateInterval(from, to);
+
+                //must pass in Timestamp instead of LocalDateTime since localdatetime turns out to be bytea instead of
+                //timestamp without time zone when passed to SQL query
+                return transactionRepository.findTransactionByDateInterval(Timestamp.valueOf(from+" 00:00:00"), Timestamp.valueOf(to+" 00:00:00"));
             }
         }
     }
@@ -55,7 +60,9 @@ public class TransactionService {
         ));
 
         //do the checks here instead of in API layer for reusability and code structure
-        LocalDateTime parsedTime = parseStringToLocalDateTime(time);
+        String[] parts = time.split("-");
+        checkDateTimeFormatCorrectly(parts);
+        LocalDateTime parsedTime = parseStringToLocalDateTime(parts);
 
         if(name!=null&&name.length()>0){
             editedTransaction.setName(name);
@@ -82,26 +89,26 @@ public class TransactionService {
         }
     }
 
-    public LocalDateTime parseStringToLocalDateTime(String time){
-        if(time != null) {
-            String[] parts = time.split("-");
-            if(parts.length!=6){
+    public LocalDateTime parseStringToLocalDateTime(String[] parts){
+        int length = parts.length;
+            if(length==0){
                 throw new IllegalArgumentException("Incorrect time request parameter format");
-            }else{
-            checkDateTimeFormatCorrectly(parts);}
-            Integer[] convertedParts = convertPartsToInteger(parts);
+            }else if(length==6){
+                //format YYYY-MM-DD-HH-mm-ss
+            int[] convertedParts = convertPartsToInteger(parts);
             return LocalDateTime.of(convertedParts[0], convertedParts[1], convertedParts[2], convertedParts[3],convertedParts[4],convertedParts[5]);
         }
         return null;
     }
 
-    public Integer[] convertPartsToInteger(String[] timeArray){
+    public int[] convertPartsToInteger(String[] timeArray){
         //string format should already be checked in "checkTimeFormatCorrectly()" method
         //no need to check again here
-        Integer[] results = {0,0,0,0,0,0};
-        for(int i = 0;i<6;i++){
-            results[i] = Integer.parseInt(timeArray[i]);
-        }
+        int length = timeArray.length;
+        int[] results = new int[length];
+            for (int i = 0; i < length; i++) {
+                results[i] = Integer.parseInt(timeArray[i]);
+            }
         return results;
     }
 
