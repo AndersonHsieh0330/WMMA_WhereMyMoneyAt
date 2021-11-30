@@ -38,7 +38,7 @@ public class TransactionService {
 
                 //must pass in Timestamp instead of LocalDateTime since localdatetime turns out to be bytea instead of
                 //timestamp without time zone when passed to SQL query
-                return transactionRepository.findTransactionByDateInterval(Timestamp.valueOf(from+" 00:00:00"), Timestamp.valueOf(to+" 00:00:00"));
+                return transactionRepository.findTransactionByDateInterval(Timestamp.valueOf(from), Timestamp.valueOf(to));
             }
         }
     }
