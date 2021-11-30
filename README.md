@@ -28,7 +28,7 @@ Path Variable:
 Parameters:
 - name : Not required, can be any String. Ex. Cheese
 - amount : Not required, can be a decimal number and negative number. Ex. 3.99
-- time : Not required, must be in the form of YYYY-MM-DD-HH-MM-SS with a '-' character in between numbers(24 hr). Ex. 2021-11-09-14-15-06-55
+- time : Not required, must be in the form of YYYY-MM-DD-HH-MM with a '-' character in between numbers(24 hr). Ex. 2021-11-09-14-15-06
   
 DELETE : https://where-my-money-at.herokuapp.com/api/v1/transaction/[id]
 
