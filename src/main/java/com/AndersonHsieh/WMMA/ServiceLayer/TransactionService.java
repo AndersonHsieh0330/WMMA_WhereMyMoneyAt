@@ -60,9 +60,12 @@ public class TransactionService {
         ));
 
         //do the checks here instead of in API layer for reusability and code structure
-        String[] parts = time.split("-");
-        checkDateTimeFormatCorrectly(parts);
-        LocalDateTime parsedTime = parseStringToLocalDateTime(parts);
+        if(time != null) {
+            String[] parts = time.split("-");
+            checkDateTimeFormatCorrectly(parts);
+            LocalDateTime parsedTime = parseStringToLocalDateTime(parts);
+            editedTransaction.setTime(parsedTime);
+        }
 
         if(name!=null&&name.length()>0){
             editedTransaction.setName(name);
@@ -71,10 +74,6 @@ public class TransactionService {
         if(amount!=null){
             //the balance of the transaction can be 0
             editedTransaction.setAmount(amount);
-        }
-
-        if(parsedTime!=null){
-            editedTransaction.setTime(parsedTime);
         }
 
     }
