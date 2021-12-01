@@ -20,7 +20,7 @@ Parameters:
 - name : Required, can be any String. Ex. Cheese
 - amount : Required, can be a decimal number and negative number. Ex. 3.99
 
-POST: https://where-my-money-at.herokuapp.com/api/v1/transaction/[id]?name[String]&amount=[Double]&time=[SpecialFormattedDateTime]
+POST: https://where-my-money-at.herokuapp.com/api/v1/transaction/[id]?name=[String]&amount=[Double]&time=[SpecialFormattedDateTime]
 
 Path Variable:
 - id : Required, the id of the transaction that is to be edited.
