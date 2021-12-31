@@ -1,11 +1,14 @@
 # WMMA_WhereMyMoneyAt_RestAPI
-This is the RestAPI implementation of WMMA, built with Spring boot, deploy to Heroku with Heroku PostgreSQL. 
+WMMA, which stands for WhereMyMoneyAt is an app that helps you keep track of your expenses and money transactions. 
+This is the RestAPI implementation of WMMA, built with Spring boot, deploy to Heroku with Heroku PostgreSQL. This is my first time using Spring Boot to build build a Restful API following the three layer(API, Service, DataAccess) patterns. I've always wondered how an HTTP URI can deliver so much information. This project has inspired me in becoming a full stack developer, who not only makes a pretty user interface, but also has the ability to handle things in the backend. This project also inspired me to take a SQL course to enhance my understanding of the language.
 
-WMMA, which stands for WhereMyMoneyAt is an app that helps you keep track of your expenses and money transactions.
+During the development process, I linked the API locally to a MySQL server on my laptop. However I really want to make it accessable to the public and Heroku PostgreSQL offers a little more space than other remote SQL database(trial plan). Thus I migrated to PostgreSQL, which allows me to explore difference backend technologies.
+
+**Note that Heroku puts web service to sleep after a certain amount of time. Thus the first request might take longer than usual. Please wait for a little longer or send another GET request to wake up the server, if the respond time appears to be slow.
 
 The RestAPI setup is as below:
 
-MySQL Server runs on localhost:3306 with db named WMMA
+-----------------------------------------------------------------------------------------------
 
 GET: https://where-my-money-at.herokuapp.com/api/v1/transaction?all=[true/false]&from=[SpecialFormattedDate]&to=[SpecialFormattedDate]
 
@@ -35,4 +38,17 @@ DELETE : https://where-my-money-at.herokuapp.com/api/v1/transaction/[id]
 Path Variable:
 - id : Required, the id of the transaction that is to be edited.
 
+-----------------------------------------------------------------------------------------------
 
+WMMA_RestAPI supports:
+- Create, Read, Update, Delete Transaction data
+- Auto record the time of each transaction entry
+
+Some new things I’ve learned:
+- Spring Boot Framework
+- Spring Data JPA library
+
+Resources Used:
+- Spring Data JPA Library
+- Spring web
+- Heroku PostgreSQL
